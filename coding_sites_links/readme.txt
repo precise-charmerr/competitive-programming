@@ -1,4 +1,5 @@
 This page is for all important links/sites of programming
+One blog for "how to come up with problem idea" is: https://www.topcoder.com/blog/how-to-come-up-with-problem-ideas/
 
 
 1. This site is for visualising data structures and algorithms through animation
@@ -28,12 +29,13 @@ https://ocw.mit.edu/courses/civil-and-environmental-engineering/1-204-computer-a
     https://cf-solver.netlify.app/
 
 10. This link refers to Project Euler which is ultimately good for math coding related questions: https://projecteuler.net/
+    These problems are mostly maths type .. one other place is : https://codeforces.com/group/JESCgZZ8qn/contests
 
 11. This link is for Cp algorithms : https://cp-algorithms.com/
 
 12. This Link is for all openings of any new positions: https://linktr.ee/coding_starts_with_c
 
-13. This link refers to the ultimate list of coding problems by Shahjalal Shohag: https://blog.shahjalalshohag.com/topic-list/
+13. This link refers to the ultimate list of coding problems by Shahjalal Shohag: https://blog.shahjalalshohag.com/topic-list/ which we can access from codeforces blog also: https://codeforces.com/blog/entry/95106
 
 14. Standings for Icpc 2021 and also coders details: https://cphof.org/standings/icpc/2020
 
@@ -53,6 +55,10 @@ https://ocw.mit.edu/courses/civil-and-environmental-engineering/1-204-computer-a
 21. Site for mathematical proofs of number theory: https://math.libretexts.org/Bookshelves
 
 22. Site for IOI contests: https://ioi.contest.codeforces.com/group/32KGsXgiKA/blog?locale=en
+
+23. Next in List is errichto github: which is https://github.com/Errichto... There go to youtube... then wiki and you will find all the resources... Choose the one you want and work from it... for e.g.: https://github.com/Errichto/youtube/wiki/Learning-resources
+
+24. Two courses to enroll is: https://codeforces.com/edu/courses and https://codeforces.com/edu/course/2
 
 This is it for now... I will keep on updating as i get new nice links...
 Thanks
