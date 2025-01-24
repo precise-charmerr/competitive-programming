@@ -60,5 +60,7 @@ https://ocw.mit.edu/courses/civil-and-environmental-engineering/1-204-computer-a
 
 24. Two courses to enroll is: https://codeforces.com/edu/courses and https://codeforces.com/edu/course/2
 
+25. If you even want to find, what is the rating of a random problem in code forces, go to this link: https://codeforces.com/api/problemset.problems, search your problem with ID/name.
+
 This is it for now... I will keep on updating as i get new nice links...
 Thanks
