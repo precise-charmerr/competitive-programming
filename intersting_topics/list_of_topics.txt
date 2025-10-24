@@ -1,2 +1,0 @@
-1. Why pow() does not give correct precision and not advisable to use?
-2. How does bits work for positive and negative numbers and why for some specific length range is [-2^31, 2^32-1]? --> (check this and write)
