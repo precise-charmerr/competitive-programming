@@ -1,0 +1,66 @@
+This was observed when https://codeforces.com/problemset/problem/2138/A problem was done.
+Observation was that when pow(a,b) was used it sometimes showed difference in answer.(see solve2 for example).
+
+This happened because pow function uses double or float for computations.
+see for example: https://en.cppreference.com/w/cpp/numeric/math/pow
+
+Now for the example used in code, we are doing 2^60 and difference which came up
+between sec+x and total was 7 which is equal to x itself.
+That means sec(which was total-x) itself is equal to total.
+
+Why did that happen?
+
+pow(2, k+1) uses floating-point (double). When you do -- int64_t sec = pow(2, k+1) - x;
+
+the subtraction pow(...) - x happens in double and is rounded to the nearest representable double. 
+At large powers of two the distance between adjacent representable doubles (the ULP) is large, 
+so subtracting a small integer x may not move the double to the next representable value — 
+it will round back to the original value. Then you convert (truncate) that double to int64_t. 
+That can make sec == total, so sec + x == total + x — producing a difference equal to x (e.g. 7), not 1.
+
+
+STEP by STEP:
+Suppose k = 56. Then 2^(k+1) = 2^57 = 144115188075855872
+This exact integer fits in a 64-bit integer. pow(2, k+1) computes this using double:
+1. Double precision facts
+    * A double has 53 bits of precision (52 explicit fraction bits + 1 implicit leading 1).
+    * For values around 2^e, the spacing (ULP) between adjacent representable doubles is 2^(e-52).
+2. ULP at 2^57
+    * Here e = 57, so ULP = 2^(57-52) = 2^5 = 32.
+    * That means representable doubles near 2^57 are spaced by 32. Only multiples of 32 can be represented exactly.
+3. What happens when you compute pow(2, 57) - x in double
+    * Let D = pow(2,57) as a double. D is exactly representable and equals 144115188075855872.0
+    * If x = 7, then the mathematical result D - 7 = 144115188075855865.0. 
+        But that number is not representable as a double because representable numbers are multiples of 32.
+    * The two nearest representable doubles around 144115188075855865 are:
+        144115188075855872 (which is D)
+        144115188075855840 (which is D - 32)
+    * 144115188075855865 is closer to 144115188075855872 than to D - 32, 
+        so the result of the floating-point subtraction is rounded to 144115188075855872 
+        (i.e. it rounds back up to D)
+4. Conversion to int64_t
+    * You do int64_t sec = (double_result_of_pow_minus_x); which truncates the double toward zero.
+    * Since the double result is 144115188075855872.0 (same as D), sec == total.
+5. Compute sec + x in integer
+    * sec + x = 144115188075855872 + 7 = 144115188075855879
+    * But total is 144115188075855872. So sec + x is total + 7 — exactly the behavior you saw.
+
+
+
+
+Why you saw equality in the first solve() but not in solve2()
+In solve() you did:
+int64_t total = pow(...);
+int64_t sec = total - x;   // integer subtraction
+
+total was computed once (double → integer), then the subtraction total - x is done as integer arithmetic, so no rounding occurs again — everything is consistent.
+
+In solve2() you called pow() again inside sec = pow(...) - x;. 
+That second call returns a double and the subtraction happens in floating point, 
+so the rounding behavior described above matters. 
+Two pow calls and doing the subtraction in double vs doing it in int64_t is why the results diverge.
+
+
+The solution for this is using << operator.
+
+It will give better responses since it wont be in floats.
